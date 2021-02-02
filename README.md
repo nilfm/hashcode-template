@@ -57,7 +57,8 @@ This framework offers some customization of the algorithms via command-line argu
 The example problem that was chosen to test this framework was the following:
 
 ```
-The input file contains an integer number n, followed by n integer numbers x_1, ..., x_n. We want to generate a file with a subset of the input file which maximizes the sum of its elements.
+The input file contains an integer number n, followed by n integer numbers x_1, ..., x_n. 
+We want to generate a file with a subset of the input file maximizing the sum of its elements.
 ```
 
 This problem is trivially solved by taking only the positive numbers. We took a different approach in order to test the algorithms: we defined a parameter `threshold`, which takes values in [-1500, 1500], and took the values greater than `threshold`. The optimal value for this parameter should be 0 or close to 0, so it will be easy to see if the algorithms reach the correct result. 
