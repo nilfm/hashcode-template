@@ -1,0 +1,12 @@
+{
+    "floats": [
+        {
+            "name": "threshold",
+            "lower": -1500,
+            "upper": 1500
+        }
+    ],
+    "ints": [
+
+    ]
+}

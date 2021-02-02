@@ -1,0 +1,4 @@
+out_temp.txt
+*__pycache__*
+main
+.env
