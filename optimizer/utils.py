@@ -82,3 +82,7 @@ def parse_json(file_path):
 def run_cpp(params, executable, data_path):
     args = [f"./{executable}", f"inputs/{data_path}"] + params
     subprocess.run(args)
+
+
+def run_make(executable):
+    subprocess.run(["make", executable])

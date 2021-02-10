@@ -21,7 +21,6 @@ In order to work with this template, the user will need to make some changes to 
 * Implement `cpp_utils/read_data.hh`. This file will contain the necessary data structures to hold the input data (they will be global and accessible from `main.cc` if declared here), as well as the function `read_data`, which initializes these structures.
 * Implement `main.cc`. In this file, you should use the data structures from the previous step to reach a solution. You should also use the parameters you chose in `params.json` via the map `p`. Example: `p["threshold"]`.
 * Implement `cpp_utils/write_output.hh`. This file will write to `out_temp.txt`, which is a temporary file. All solutions that are good enough will be copied to the `outputs` directory automatically. Pass the desired arguments from `main.cc` to the `write_output` function in order to write the solution to this file.
-* Compile the `main.cc` file using `make main`.
 
 Once this is done, you can execute `main_random.py` and `main_sim_ann.py` to optimize the score function. The following sections explain how these algorithms work and which parameters can be passed to them via command line arguments.
 
@@ -47,7 +46,7 @@ This framework offers some customization of the algorithms via command-line argu
 * `-p`/`--params`: Required argument. Path to the JSON file which defines the parameters.
 * `-d`/`--data`: Required argument. Path to the input file **relative to the `inputs` directory**.
 * `-s`/`--steps`: Optional argument. Specifies the number of iterations that the algorithm will perform at most. Default: 1000.
-* `-x`/`--executable`: Optional argument. Allows the user to specify the executable that solves the problem. Default: `main`.
+* `-x`/`--executable`: Optional argument. Allows the user to specify the executable that solves the problem. `make` will be run on this executable. Default: `main`.
 * `-n`/`--neigbours`: Optional argument, only used in simulated annealing. Allows the user to specify how many neighbours should be tried unsuccessfully before ending the execution of the algorithm. Default: 25.
 * `-l`/`--lambda_exp`: Optional argument, only used in simulated annealing. Used as the `lambda` in the simulated annealing algorithm. A larger `lambda` means more stability, and a smaller `lambda` means more volatility (more likely to jump to a lower score). 
 * `-g`/`--graph`: Optional argument, boolean. If provided, the program will show plots to visualize its execution. The random algorithm will produce a box plot representing the scores obtained. The simulated annealing algorithm will produce line plots showing the evolution of the score and each one of its parameters over the iterations.
@@ -69,5 +68,4 @@ This problem is trivially solved by taking only the positive numbers. We took a 
 * When the program reaches a solution which is better than what you previously had, it will be saved in the outputs directory. Be sure to copy it elsewhere or submit it to the judge system, because it will be overwritten by the next execution of the program!
 * Make sure that the `compute_score` function is implemented properly (test it against the judge system). A poorly implemented `compute_score` function will make the optimization meaningless.
 * Simulated annealing will not work better than random if the score is not a continuous function of the parameters. An example of this would be to use one of the parameters as a random seed for the `C++` code. Since small changes to the parameter will result in completely different results, local search is not applicable. 
-* Make sure that you run `make main` after changing the `main.cc` file in order to use the newest version.
 * In simulated annealing, if the program gets stuck in local minima easily, try using smaller `lambda` values. If it oscillates too much, try using larger `lambda` values.
