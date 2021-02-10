@@ -40,6 +40,11 @@ class SimulatedAnnealingStrategy(Strategy):
     def execute(self, executable, data_path):
         best_out_path = f"outputs/{data_path}_output.txt"
 
+        best_file_score = -1
+        if os.path.exists(best_out_path):
+            best_file_score = compute_score(best_out_path)
+            print(f"INITIAL BEST SCORE: {best_file_score}")
+
         scores = []
         param_values = [[] for _ in self.params]
 
@@ -57,7 +62,10 @@ class SimulatedAnnealingStrategy(Strategy):
                 best = compute_score(TEMP_OUT_PATH)
                 scores.append(best)
                 previous_values = values
-                os.rename(TEMP_OUT_PATH, best_out_path)
+                if best > best_file_score:
+                    os.rename(TEMP_OUT_PATH, best_out_path)
+                    best_file_score = best
+
                 print(f"Iteration {step} - Score: {best}")
             else:
                 # Add previous_values to param_values
@@ -85,12 +93,15 @@ class SimulatedAnnealingStrategy(Strategy):
                         scores.append(score)
                         previous_values = values
                         moved = True
-                    # If this state is better, copy the solution to the "best" file
+                    # If this state is better than any other in this execution, update best
                     if score > best:
+                        best = score
+                    # If this state is better than any other, copy the solution to the "best" file
+                    if score > best_file_score:
                         print(
                             f"Iteration {step} - Score: {score} (NEW BEST SCORE)")
                         os.rename(TEMP_OUT_PATH, best_out_path)
-                        best = score
+                        best_file_score = score
                     # If we changed state, break the loop
                     if moved:
                         break
@@ -99,7 +110,7 @@ class SimulatedAnnealingStrategy(Strategy):
                     print("Couldn't find a neighbour to move to. Ending execution")
                     break
 
-        print(f"BEST SCORE: {best}")
+        print(f"FINAL BEST SCORE: {best_file_score}")
         print(f"Solution at: {best_out_path}")
 
         if self.graph:
@@ -135,22 +146,26 @@ class RandomStrategy(Strategy):
     def execute(self, executable, data_path):
         best_out_path = f"outputs/{data_path}_output.txt"
 
+        best_file_score = -1
+        if os.path.exists(best_out_path):
+            best_file_score = compute_score(best_out_path)
+            print(f"INITIAL BEST SCORE: {best_file_score}")
+
         scores = []
 
-        best = None
         for step in range(self.steps):
             params = self.generate_params()
             run_cpp(params, executable, data_path)
             score = compute_score(TEMP_OUT_PATH)
             scores.append(score)
-            if best is None or score > best:
+            if score > best_file_score:
                 print(f"Iteration {step} - Score: {score} (NEW BEST SCORE)")
                 os.rename(TEMP_OUT_PATH, best_out_path)
-                best = score
+                best_file_score = score
             else:
                 print(f"Iteration {step} - Score: {score}")
 
-        print(f"BEST SCORE: {best}")
+        print(f"FINAL BEST SCORE: {best_file_score}")
         print(f"Solution at: {best_out_path}")
 
         if self.graph:
