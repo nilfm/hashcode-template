@@ -81,7 +81,7 @@ class SimulatedAnnealingStrategy(Strategy):
                     # If we choose to move to this state, change state
                     if self.change_state(score, best, step):
                         print(
-                            f"Iteration {step} - Changed state. New score {score}")
+                            f"Iteration {step} - New score {score}")
                         scores.append(score)
                         previous_values = values
                         moved = True
