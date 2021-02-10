@@ -4,7 +4,7 @@ This repository is meant to serve as a framework to write Google Hashcode soluti
 
 ## What is Google Hashcode?
 
-Google Hashcode is a contest in which a team is given a problem statement and 5 data sets and they have to generate the best possible output for each of them. The contestant's score is the sum of their scores in all data sets. The problems are hard enough that there isn't usually an optimal solution that runs in a feasible time.
+Google Hashcode is a contest in which a team is given a problem statement and 6 data sets and they have to generate the best possible output for each of them. The contestant's score is the sum of their scores in all data sets. The problems are hard enough that there isn't usually an optimal solution that runs in a feasible time.
 
 ## Why is this useful?
 
@@ -65,7 +65,7 @@ This problem is trivially solved by taking only the positive numbers. We took a 
 
 ## Tips
 
-* Name the input files `a`, `b`, `c`, `d`, `e` and place them in the `inputs` directory.
+* Name the input files `a`, `b`, `c`, `d`, `e`, `f` and place them in the `inputs` directory.
 * When the program reaches a solution which is better than what you previously had, it will be saved in the outputs directory. Be sure to copy it elsewhere or submit it to the judge system, because it will be overwritten by the next execution of the program!
 * Make sure that the `compute_score` function is implemented properly (test it against the judge system). A poorly implemented `compute_score` function will make the optimization meaningless.
 * Simulated annealing will not work better than random if the score is not a continuous function of the parameters. An example of this would be to use one of the parameters as a random seed for the `C++` code. Since small changes to the parameter will result in completely different results, local search is not applicable. 
