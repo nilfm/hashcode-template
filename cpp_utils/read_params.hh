@@ -1,8 +1,7 @@
 #ifndef __READ_PARAMS__
 #define __READ_PARAMS__
 
-#include <bits/stdc++.h>
-using namespace std;
+#include "includes.hh"
 
 map<string, double> read_params(int argc, char** argv) {
     map<string, double> res;

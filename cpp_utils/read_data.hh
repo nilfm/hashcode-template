@@ -1,8 +1,7 @@
 #ifndef __READ_DATA__
 #define __READ_DATA__
 
-#include <bits/stdc++.h>
-using namespace std;
+#include "includes.hh"
 
 // TODO: Declare variables to hold the input data
 vector<int> nums;

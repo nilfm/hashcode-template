@@ -1,8 +1,7 @@
-#include <bits/stdc++.h>
+#include "cpp_utils/includes.hh"
 #include "cpp_utils/read_params.hh"
 #include "cpp_utils/read_data.hh"
 #include "cpp_utils/write_output.hh"
-using namespace std;
 
 int main(int argc, char** argv) {
     map<string, double> p = read_params(argc, argv);

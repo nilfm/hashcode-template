@@ -8,8 +8,11 @@ def main():
         print("Usage: python3 check_score.py <output file name>")
         return
     
-    score = compute_score(sys.argv[1])
-    print(f"Score for {sys.argv[1]}: {score}")
+    name = sys.argv[1]
+    input_path = f"inputs/{name}"
+    output_path = f"outputs/{name}_output.txt"
+    score = compute_score(input_path output_path)
+    print(f"Score for {name}: {score}")
 
 if __name__ == "__main__":
     main()

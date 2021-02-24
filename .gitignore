@@ -1,4 +1,8 @@
 out_temp.txt
 *__pycache__*
 main
+main_debug
+a.out
+*.zip
 .env
+

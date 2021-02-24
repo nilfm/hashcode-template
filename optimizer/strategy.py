@@ -38,11 +38,12 @@ class SimulatedAnnealingStrategy(Strategy):
         return random.uniform(0, 1) < threshold
 
     def execute(self, executable, data_path):
+        input_path = f"inputs/{data_path}"
         best_out_path = f"outputs/{data_path}_output.txt"
 
         best_file_score = -1
         if os.path.exists(best_out_path):
-            best_file_score = compute_score(best_out_path)
+            best_file_score = compute_score(input_path, best_out_path)
             print(f"INITIAL BEST SCORE: {best_file_score}")
 
         scores = []
@@ -59,7 +60,7 @@ class SimulatedAnnealingStrategy(Strategy):
                     params.append(param.name)
                     params.append(str(value))
                 run_cpp(params, executable, data_path)
-                best = compute_score(TEMP_OUT_PATH)
+                best = compute_score(input_path, TEMP_OUT_PATH)
                 scores.append(best)
                 previous_values = values
                 if best > best_file_score:
@@ -84,7 +85,7 @@ class SimulatedAnnealingStrategy(Strategy):
                         params.append(param.name)
                         params.append(str(value))
                     run_cpp(params, executable, data_path)
-                    score = compute_score(TEMP_OUT_PATH)
+                    score = compute_score(input_path, TEMP_OUT_PATH)
 
                     # If we choose to move to this state, change state
                     if self.change_state(score, best, step):
@@ -146,11 +147,12 @@ class RandomStrategy(Strategy):
         return res
 
     def execute(self, executable, data_path):
+        input_path = f"inputs/{data_path}"
         best_out_path = f"outputs/{data_path}_output.txt"
 
         best_file_score = -1
         if os.path.exists(best_out_path):
-            best_file_score = compute_score(best_out_path)
+            best_file_score = compute_score(input_path, best_out_path)
             print(f"INITIAL BEST SCORE: {best_file_score}")
 
         scores = []
@@ -158,7 +160,7 @@ class RandomStrategy(Strategy):
         for step in range(self.steps):
             params = self.generate_params()
             run_cpp(params, executable, data_path)
-            score = compute_score(TEMP_OUT_PATH)
+            score = compute_score(input_path, TEMP_OUT_PATH)
             scores.append(score)
             if score > best_file_score:
                 print(f"Iteration {step} - Score: {score} (NEW BEST SCORE)")
