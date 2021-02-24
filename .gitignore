@@ -2,6 +2,7 @@ out_temp.txt
 *__pycache__*
 main
 main_debug
+test
 a.out
 *.zip
 .env
