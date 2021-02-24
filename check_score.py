@@ -11,7 +11,7 @@ def main():
     name = sys.argv[1]
     input_path = f"inputs/{name}"
     output_path = f"outputs/{name}_output.txt"
-    score = compute_score(input_path output_path)
+    score = compute_score(input_path, output_path)
     print(f"Score for {name}: {score}")
 
 if __name__ == "__main__":
