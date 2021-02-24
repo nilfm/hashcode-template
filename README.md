@@ -16,7 +16,7 @@ This framework enables the user to choose which parameters to randomize and easi
 
 In order to work with this template, the user will need to make some changes to the original repo (which is just a trivial example problem):
 
-* Implement `compute_score` inside `optimizer/get_score.py`. This function should read the file at the given path and output a number, which will be the score of that file.
+* Implement `compute_score` inside `optimizer/get_score.py`. This function should read the files at the given paths and output a number, which will be the score of that file.
 * Decide the parameters that you want to randomize and implement `params.json`. This file contains two lists, one for `float` variables and one for `int` variables. Each variable is a dictionary with the fields `name`, `lower` and `upper` (the bounds of the parameter).
 * Implement `cpp_utils/read_data.hh`. This file will contain the necessary data structures to hold the input data (they will be global and accessible from `main.cc` if declared here), as well as the function `read_data`, which initializes these structures.
 * Implement `main.cc`. In this file, you should use the data structures from the previous step to reach a solution. You should also use the parameters you chose in `params.json` via the map `p`. Example: `p["threshold"]`.
