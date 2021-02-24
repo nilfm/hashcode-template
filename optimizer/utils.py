@@ -86,3 +86,7 @@ def run_cpp(params, executable, data_path):
 
 def run_make(executable):
     subprocess.run(["make", executable])
+
+
+def create_temp_file():
+    subprocess.run(["touch", "out_temp.txt"])
