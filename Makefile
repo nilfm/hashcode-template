@@ -7,6 +7,9 @@ main_debug: main.cc cpp_utils/*
 test: test.cc cpp_utils/*
 	g++ test.cc -o test
 
+zip: main.cc *.py optimizer/* cpp_utils/* 
+	zip code.zip -r main.cc *.py optimizer cpp_utils
+
 clean:
 	rm -f main
 	rm -f main_debug
