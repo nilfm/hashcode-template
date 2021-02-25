@@ -19,5 +19,6 @@ ultraclean:
 	rm -f main
 	rm -f main_debug
 	rm -f outputs/*
+	rm -f out_temp.txt
 	rm -f code.zip
 	rm -f test
