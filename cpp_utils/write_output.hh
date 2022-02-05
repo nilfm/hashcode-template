@@ -2,6 +2,7 @@
 #define __WRITE_OUTPUT__
 
 #include "includes.hh"
+#include "read_data.hh"
 
 // TODO: Modify the parameters to this function as desired and write to "out_temp.txt"
 void write_output(vector<int>& chosen) {
